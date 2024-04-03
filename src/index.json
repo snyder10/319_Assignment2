@@ -1,0 +1,28 @@
+{
+    "items": {
+        "Dog": {
+            "description": "This is a dog.",
+            "image": "./images/dog.jpg"
+        },
+        "Cat": {
+            "description": "This is a cat.",
+            "image": "./images/cat.jpg"
+        },
+        "Rabbit": {
+            "description": "This is a rabbit.",
+            "image": "./images/rabbit.jpg"
+        },
+        "Mouse": {
+            "description": "This is a mouse.",
+            "image": "./images/mouse.jpg"
+        },
+        "Rat": {
+            "description": "This is a rat.",
+            "image": "./images/rat.jpg"
+        },
+        "Gerbil": {
+            "description": "This is a gerbil.",
+            "image": "./images/gerbil.jpg"
+        }
+    }
+}
