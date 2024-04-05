@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useForm } from "react-hook-form";
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import data from "./index.json"
+
 console.log(data)
 const itemList = Object.keys(data["items"])
 
@@ -10,6 +13,7 @@ function App() {
   const [cart, setCart] = useState({});
   const [searchString, setSearchString] = useState("");
   const [images, setImages] = useState({});
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   useEffect(() => {
     const promises = itemList.map(item =>
@@ -59,7 +63,7 @@ function App() {
     <ul className="block">
       {itemList.filter(item => item.toLowerCase().includes(searchString.toLowerCase())).map(item => (
         <li key={item}>
-          <img src={images[item]} alt={item}  className="image"/><hr />
+          <img src={images[item]} alt={item}  className="item-image"/><hr />
           {item}: <button onClick={() => removeItem(item)}>-</button><button onClick={() => addItem(item)}>+</button> {cart[item] ?? 0}<br/>
           {data["items"][item]["description"]}
         </li>
@@ -80,21 +84,9 @@ function App() {
     }
   };
 
-  const verifyForm = (event) => {
-    event.preventDefault()
-    let re = new RegExp("^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$")
-    if (!re.test(event.target[1].value)){
-      event.target[1].style.backgroundColor = "yellow";
-    } else {
-      event.target[1].style.backgroundColor = "white";
-    }
-
-    re = new RegExp("^[0-9]{5}$");
-    if(!re.test(event.target[7].value)){
-      event.target[7].style.backgroundColor = "yellow";
-    } else {
-      event.target[7].style.backgroundColor = "white";
-    }
+  const onSubmitCart = () => {
+    console.log(data.zip);
+    changePage("confirmation")
   };
 
   const CartPage = () => (
@@ -102,24 +94,31 @@ function App() {
       Cart<hr />
       <button onClick={() => changePage("browse")}>Return</button>
       <DisplayCart />
-      <form id="classForm" onSubmit={verifyForm}>
-        <label forhtml="name">Full Name</label>
-        <input type="text" id="name" name="name"></input>
-        <label forhtml="email">Email</label>
-        <input type="text" id="email" name="email"></input>
-        <label forhtml="card">Card</label>
-        <input type="text" id="card" name="card"></input>
-        <label forhtml="address1">Address 1</label>
-        <input type="text" id="address1" name="address1"></input>
-        <label forhtml="address2">Address 2</label>
-        <input type="text" id="address2" name="address2"></input>
-        <label forhtml="city">City</label>
-        <input type="text" id="city" name="city"></input>
-        <label forhtml="state">State</label>
-        <input type="text" id="state" name="state"></input>
-        <label forhtml="zip">Zip</label>
-        <input type="text" id="zip" name="zip"></input>
-        <input type="submit" value="Submit" />
+      <form id="classForm" onSubmit={handleSubmit(onSubmitCart)} className="container mt-5">
+        <label>Full Name</label>
+        <input {...register("name", { required: true })}></input>
+        {errors.name && <p className="text-danger">Full name is required.</p>}
+        <label>Email</label>
+        <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/ })}></input>
+        {errors.email && <p className="text-danger">Email is required.</p>}
+        <label>Card</label>
+        <input {...register("card", { required: true, pattern: /^[0-9]{16}$/})}></input>
+        {errors.card && <p className="text-danger">A 16 digit card number is required.</p>}
+        <label>Address 1</label>
+        <input {...register("address1", { required: true })}></input>
+        {errors.address1 && <p className="text-danger">Address is required.</p>}
+        <label>Address 2</label>
+        <input {...register("address2")} type="text" id="address2" name="address2"></input>
+        <label>City</label>
+        <input {...register("city", { required: true })}></input>
+        {errors.city && <p className="text-danger">City is required.</p>}
+        <label>State</label>
+        <input {...register("state", { required: true })}></input>
+        {errors.state && <p className="text-danger">State is required.</p>}
+        <label>Zip</label>
+        <input {...register("zip", { required: true, pattern: /^[0-9]{5}$/})}></input>
+        {errors.zip && <p className="text-danger">A 5 digit ZIP code is required.</p>}
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>
   );
