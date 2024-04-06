@@ -181,15 +181,8 @@ function App() {
         <p className="center">{dataF.address1} {dataF.address2}</p>
         <p className="center">{dataF.city}, {dataF.state} {dataF.zip} </p>
       </div>
-      <div>
-
-        <h1>Payment Summary:</h1>
-        <h3>{dataF.fullName}</h3>
-        <p>{dataF.email.split}</p>
-        <p>************{dataF.card.slice(12)}</p>
-        <p>{dataF.address1} {dataF.address2}</p>
-        <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
       <hr/>
+      <div>
       <button onClick={resetPage} className="center btn btn-primary">Home</button>
       </div>
     </div>
