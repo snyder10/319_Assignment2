@@ -163,8 +163,8 @@ function App() {
         <h1>Payment Summary:</h1>
         <h3>{dataF.fullName}</h3>
         <p>{dataF.email.split}</p>
-        <p>{dataF.creditCard}</p>
-        <p>{dataF.address}</p>
+        <p>************{dataF.card.slice(12)}</p>
+        <p>{dataF.address1} {dataF.address2}</p>
         <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
       </div>
       <button onClick={resetPage}>Home</button>
