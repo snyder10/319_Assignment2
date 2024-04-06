@@ -61,3 +61,15 @@ input  {
   display: block;
   background-color: white;
 }
+
+span.price {
+  background-color: white;
+  color: hwb(0 30% 69%);
+  text-align: center;
+  padding: 5px;
+  border-radius: 8%;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight:bolder;
+  margin-right:5px;
+  margin-bottom:10px;
+}
