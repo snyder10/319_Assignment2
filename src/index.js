@@ -89,7 +89,6 @@ function App() {
   };
 
   const onSubmitCart = data => {
-    console.log(data.zip);
     setDataF(data);
     reset({
       "name": "",
