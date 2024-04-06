@@ -67,7 +67,7 @@ function App() {
       {itemList.filter(item => item.toLowerCase().includes(searchString.toLowerCase())).map(item => (
         <li key={item}>
           <img src={images[item]} alt={item} className="item-image" /><hr />
-          {item}: <span class="price">${products["items"][item]["price"]}</span><hr></hr><button onClick={() => removeItem(item)}>-</button><button onClick={() => addItem(item)}>+</button> {cart[item] ?? 0}<br />
+          {item}: <span class="price">${products["items"][item]["price"]}</span><hr></hr><button onClick={() => removeItem(item)}className="btn btn-secondary">-</button> <button onClick={() => addItem(item)}className="btn btn-secondary">+</button> {cart[item] ?? 0}<br />
           {products["items"][item]["description"]}
         </li>
       ))}
@@ -113,8 +113,8 @@ function App() {
 
   const CartPage = () => (
     <div>
-      Cart<hr />
-      <button onClick={() => changePage("browse")}>Return</button>
+      <h1 class="topHeading">Cart</h1><hr />
+      <button onClick={() => changePage("browse")} className="cartButton btn btn-primary">Return</button>
       <DisplayCart />
       <form id="classForm" onSubmit={handleSubmit(onSubmitCart)} className="container mt-5">
         <label>Full Name</label>
@@ -176,14 +176,14 @@ function App() {
 
 const BrowsePage = ({ searchString, setSearchString, changePage, Items }) => (
   <div>
-    Browse<hr />
-    <button onClick={() => changePage("cart")}>Cart</button>
+    <h1 className="topHeading">Browse</h1><hr />
+    <button onClick={() => changePage("cart")} className="cartButton btn btn-primary">Cart</button>
     <input
       type="text"
       placeholder="Search..."
       value={searchString}
       onChange={(e) => setSearchString(e.target.value)}
-    />
+      className="topHeading"/>
     <Items />
   </div>
 );
