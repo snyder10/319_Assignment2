@@ -125,8 +125,9 @@ function App() {
       <button onClick={() => changePage("browse")} className="cartButton btn btn-primary">Return</button>
       <DisplayCart />
       <hr></hr>
-      <h1 className="total">Total: {sumCart()}</h1>
-      <p className="center">To complete your purchase, please input payment informent and shipping information:</p>
+      <h1 className="total">Total: ${sumCart()}</h1>
+      <hr></hr>
+      <h2 className="center">Payment Information</h2>
       <form id="classForm" onSubmit={handleSubmit(onSubmitCart)} className="container mt-5">
         <label>Full Name</label>
         <input {...register("name", { required: true })} className="form-control"></input>
