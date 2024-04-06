@@ -175,10 +175,10 @@ function App() {
         <hr />
         <div className="center">
           <h1 className="center">Payment Summary:</h1>
-          <h3 className="center">{dataF.name}</h3>
-          <p className="center">{dataF.email}</p>
-          <p className="center">************{dataF.card.slice(12)}</p>
-          <p className="center">{dataF.address1} {dataF.address2}</p>
+          <h3 className="center">Name: {dataF.name}</h3>
+          <p className="center">Email: {dataF.email}</p>
+          <p className="center">Credit Card: ************{dataF.card.slice(12)}</p>
+          <p className="center">Address: {dataF.address1} {dataF.address2}</p>
           <p className="center">{dataF.city}, {dataF.state} {dataF.zip} </p>
         </div>
         <hr />

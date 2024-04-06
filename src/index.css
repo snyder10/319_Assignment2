@@ -39,13 +39,15 @@ img.cartImage {
 
 ul.cartDisplay {
   margin-left:20%;
+  width:60%;
   li.rowData {
     margin-top:10px;
     height:56px;
-    width:60%;
+    width:100%;
     list-style-type:none;
     align-items: center;
     align-content: center;
+    align-self:center;
     border-style:solid;
     background-color: #d5d5d7;
   }
