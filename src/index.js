@@ -13,7 +13,7 @@ function App() {
   const [cart, setCart] = useState({});
   const [searchString, setSearchString] = useState("");
   const [images, setImages] = useState({});
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   useEffect(() => {
     const promises = itemList.map(item =>
@@ -27,6 +27,9 @@ function App() {
   }, []);
 
   const changePage = (pageName) => {
+    if(pageName==="browse") {
+      setSearchString("");
+    }
     setView(pageName);
   };
 
@@ -85,7 +88,16 @@ function App() {
   };
 
   const onSubmitCart = () => {
-    console.log(data.zip);
+    reset({
+      "name": "",
+      "email": "",
+      "card": "",
+      "address1": "",
+      "address2": "",
+      "city": "",
+      "state": "",
+      "zip": ""
+    })
     changePage("confirmation")
   };
 
@@ -123,15 +135,20 @@ function App() {
     </div>
   );
 
+  const resetPage = () => {
+    changePage("browse");
+    setCart({})
+  };
+
   const ConfirmationPage = () => (
     <div>
       Confirmation<hr />
       {/* Implement confirmation view here */}
-      <p3>Thank you for your purchase, </p3>
+      <h3>Thank you for your purchase, </h3>
       <div>
-        <p1>Purchase Summary:</p1>
+        <h1>Purchase Summary:</h1>
         <DisplayCart />
-        <p1>Total: $5,000</p1>
+        <h1>Total: $5,000</h1>
       </div>
       <div>
       <h1>Payment summary:</h1>
@@ -141,7 +158,7 @@ function App() {
         <p>{data.city},{data.state} {data.zip} </p>
         {/* <button onClick={updateHooks}>Submit</button> */}
       </div>
-      <button onClick={() => changePage("browse")}>Home</button>
+      <button onClick={resetPage}>Home</button>
         {/* Make sure to reset cart and form */}
     </div>
   );
