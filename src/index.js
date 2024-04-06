@@ -50,12 +50,20 @@ function App() {
   };
 
   const DisplayCart = () => {
-    return (<ul className="cartDisplay">
+    return (
+    <ul className="cartDisplay">
       {
         Object.keys(cart).map(item => (
-          <li key={item}>
+          <li key={item} className="rowData">
             <img src={images[item]} alt={item} className="cartImage" />
-            <p>{item}: {cart[item]}</p>
+            <p>
+            <ul className="cartInfo ">
+              <li>{item}</li>
+              <li>{cart[item]} x ${products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"]}</li> 
+              <li>=</li> 
+              <li>${cart[item] * products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"]}</li>
+            </ul>
+            </p>
           </li>
         ))
       }
@@ -113,9 +121,12 @@ function App() {
 
   const CartPage = () => (
     <div>
-      <h1 class="topHeading">Cart</h1><hr />
+      <h1 className="topHeading">Cart</h1><hr />
       <button onClick={() => changePage("browse")} className="cartButton btn btn-primary">Return</button>
       <DisplayCart />
+      <hr></hr>
+      <h1 className="total">Total: {sumCart()}</h1>
+      <p className="center">To complete your purchase, please input payment informent and shipping information:</p>
       <form id="classForm" onSubmit={handleSubmit(onSubmitCart)} className="container mt-5">
         <label>Full Name</label>
         <input {...register("name", { required: true })} className="form-control"></input>
