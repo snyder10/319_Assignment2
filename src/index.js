@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   const changePage = (pageName) => {
-    if(pageName==="browse") {
+    if (pageName === "browse") {
       setSearchString("");
     }
     setView(pageName);
@@ -54,7 +54,7 @@ function App() {
       {
         Object.keys(cart).map(item => (
           <li key={item}>
-            <img src={images[item]} alt={item} className="cartImage"/>
+            <img src={images[item]} alt={item} className="cartImage" />
             <p>{item}: {cart[item]}</p>
           </li>
         ))
@@ -66,8 +66,8 @@ function App() {
     <ul className="block">
       {itemList.filter(item => item.toLowerCase().includes(searchString.toLowerCase())).map(item => (
         <li key={item}>
-          <img src={images[item]} alt={item}  className="item-image"/><hr />
-          {item}: <button onClick={() => removeItem(item)}>-</button><button onClick={() => addItem(item)}>+</button> {cart[item] ?? 0}<br/>
+          <img src={images[item]} alt={item} className="item-image" /><hr />
+          {item}: <span class="price">${products["items"][item]["price"]}</span><hr></hr><button onClick={() => removeItem(item)}>-</button><button onClick={() => addItem(item)}>+</button> {cart[item] ?? 0}<br />
           {products["items"][item]["description"]}
         </li>
       ))}
@@ -105,7 +105,7 @@ function App() {
 
   const sumCart = () => {
     let sum = 0;
-    for (let item in cart) {      
+    for (let item in cart) {
       sum += cart[item] * products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"];
     }
     return sum.toFixed(2);
@@ -124,7 +124,7 @@ function App() {
         <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/ })} className="form-control"></input>
         {errors.email && <p className="text-danger">Email is required.</p>}
         <label>Card</label>
-        <input {...register("card", { required: true, pattern: /^[0-9]{16}$/})} className="form-control"></input>
+        <input {...register("card", { required: true, pattern: /^[0-9]{16}$/ })} className="form-control"></input>
         {errors.card && <p className="text-danger">A 16 digit card number is required.</p>}
         <label>Address 1</label>
         <input {...register("address1", { required: true })} className="form-control"></input>
@@ -138,7 +138,7 @@ function App() {
         <input {...register("state", { required: true })} className="form-control"></input>
         {errors.state && <p className="text-danger">State is required.</p>}
         <label>Zip</label>
-        <input {...register("zip", { required: true, pattern: /^[0-9]{5}$/})} className="form-control"></input>
+        <input {...register("zip", { required: true, pattern: /^[0-9]{5}$/ })} className="form-control"></input>
         {errors.zip && <p className="text-danger">A 5 digit ZIP code is required.</p>}
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
@@ -160,11 +160,12 @@ function App() {
         <h1>Total: {sumCart()}</h1>
       </div>
       <div>
-      <h1>Payment Summary:</h1>
-        <h3>{dataF.name}</h3>
-        <p>{dataF.email}</p>
-        ...
-        <p>{dataF.city},{dataF.state} {dataF.zip} </p>
+        <h1>Payment Summary:</h1>
+        <h3>{dataF.fullName}</h3>
+        <p>{dataF.email.split}</p>
+        <p>{dataF.creditCard}</p>
+        <p>{dataF.address}</p>
+        <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
       </div>
       <button onClick={resetPage}>Home</button>
     </div>
@@ -177,12 +178,12 @@ const BrowsePage = ({ searchString, setSearchString, changePage, Items }) => (
   <div>
     Browse<hr />
     <button onClick={() => changePage("cart")}>Cart</button>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchString}
-        onChange={(e) => setSearchString(e.target.value)}
-      />
+    <input
+      type="text"
+      placeholder="Search..."
+      value={searchString}
+      onChange={(e) => setSearchString(e.target.value)}
+    />
     <Items />
   </div>
 );
