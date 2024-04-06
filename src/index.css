@@ -55,7 +55,6 @@ ul.cartDisplay {
     margin-top:13px;
     text-align:center;
     text-align:left;
-    /* margin-bottom:17px; */
     font-size: 16px;
     color: rgb(4, 65, 72);
   }
@@ -110,4 +109,9 @@ button.cartButton {
 
 .purchaseGuidance {
   margin-right: 15%
+
+.center {
+  align-items:center;
+  text-align:center;
+
 }
