@@ -127,6 +127,22 @@ function App() {
     <div>
       Confirmation<hr />
       {/* Implement confirmation view here */}
+      <p3>Thank you for your purchase, </p3>
+      <div>
+        <p1>Purchase Summary:</p1>
+        <DisplayCart />
+        <p1>Total: $5,000</p1>
+      </div>
+      <div>
+      <h1>Payment summary:</h1>
+        <h3>{data.fullName}</h3>
+        <p>{data.email}</p>
+        ...
+        <p>{data.city},{data.state} {data.zip} </p>
+        {/* <button onClick={updateHooks}>Submit</button> */}
+      </div>
+      <button onClick={() => changePage("browse")}>Home</button>
+        {/* Make sure to reset cart and form */}
     </div>
   );
 
