@@ -95,6 +95,8 @@ function App() {
     for (let item in cart) {      
       sum += cart[item] * data["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"];
     }
+    console.log(FormData.name);
+    console.log(register.fullName);
     return sum.toFixed(2);
   }
 
@@ -133,10 +135,11 @@ function App() {
   );
 
   const ConfirmationPage = () => (
+    // console.log();
     <div>
       Confirmation<hr />
       {/* Implement confirmation view here */}
-      <p3>Thank you for your purchase, </p3>
+      <p3>Thank you for your purchase, {}</p3>
       <div>
         <p1>Purchase Summary:</p1>
         <DisplayCart />
