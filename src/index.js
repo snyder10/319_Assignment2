@@ -153,7 +153,7 @@ function App() {
   const ConfirmationPage = () => (
     <div>
       Confirmation<hr />
-      <p3>Thank you for your purchase, {}</p3>
+      <p3>Thank you for your purchase, {dataF.name}</p3>
       <div>
         <h1>Purchase Summary:</h1>
         <DisplayCart />
@@ -163,8 +163,8 @@ function App() {
       <h1>Payment Summary:</h1>
         <h3>{dataF.name}</h3>
         <p>{dataF.email}</p>
-         ...
-        <p>{dataF.city},{dataF.state} {dataF.zip} </p>
+        ...
+        <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
       </div>
       <button onClick={resetPage}>Home</button>
     </div>
