@@ -153,7 +153,7 @@ function App() {
   const ConfirmationPage = () => (
     <div>
       Confirmation<hr />
-      <h3>Thank you for your purchase, </h3>
+      <p3>Thank you for your purchase, {}</p3>
       <div>
         <h1>Purchase Summary:</h1>
         <DisplayCart />
