@@ -2,27 +2,33 @@
     "items": {
         "Dog": {
             "description": "This is a dog.",
-            "image": "./images/dog.jpg"
+            "image": "./images/dog.jpg",
+            "price": 100.99
         },
         "Cat": {
             "description": "This is a cat.",
-            "image": "./images/cat.jpg"
+            "image": "./images/cat.jpg",
+            "price": 1.99
         },
         "Rabbit": {
             "description": "This is a rabbit.",
-            "image": "./images/rabbit.jpg"
+            "image": "./images/rabbit.jpg",
+            "price": 15.49
         },
         "Mouse": {
             "description": "This is a mouse.",
-            "image": "./images/mouse.jpg"
+            "image": "./images/mouse.jpg",
+            "price": 3.33
         },
         "Rat": {
             "description": "This is a rat.",
-            "image": "./images/rat.jpg"
+            "image": "./images/rat.jpg",
+            "price": 3.21
         },
         "Gerbil": {
             "description": "This is a gerbil.",
-            "image": "./images/gerbil.jpg"
+            "image": "./images/gerbil.jpg",
+            "price": 34.29
         }
     }
 }
