@@ -36,9 +36,11 @@ img.cartImage {
 }
 
 ul.cartDisplay {
+  margin-left:20%;
   li {
     margin-top:10px;
     height:56px;
+    width:60%;
     list-style-type:none;
     align-items: center;
     align-content: center;

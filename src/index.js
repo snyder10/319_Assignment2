@@ -96,27 +96,27 @@ function App() {
       <DisplayCart />
       <form id="classForm" onSubmit={handleSubmit(onSubmitCart)} className="container mt-5">
         <label>Full Name</label>
-        <input {...register("name", { required: true })}></input>
+        <input {...register("name", { required: true })} className="form-control"></input>
         {errors.name && <p className="text-danger">Full name is required.</p>}
         <label>Email</label>
-        <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/ })}></input>
+        <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/ })} className="form-control"></input>
         {errors.email && <p className="text-danger">Email is required.</p>}
         <label>Card</label>
-        <input {...register("card", { required: true, pattern: /^[0-9]{16}$/})}></input>
+        <input {...register("card", { required: true, pattern: /^[0-9]{16}$/})} className="form-control"></input>
         {errors.card && <p className="text-danger">A 16 digit card number is required.</p>}
         <label>Address 1</label>
-        <input {...register("address1", { required: true })}></input>
+        <input {...register("address1", { required: true })} className="form-control"></input>
         {errors.address1 && <p className="text-danger">Address is required.</p>}
         <label>Address 2</label>
-        <input {...register("address2")} type="text" id="address2" name="address2"></input>
+        <input {...register("address2")} type="text" id="address2" name="address2" className="form-control"></input>
         <label>City</label>
-        <input {...register("city", { required: true })}></input>
+        <input {...register("city", { required: true })} className="form-control"></input>
         {errors.city && <p className="text-danger">City is required.</p>}
         <label>State</label>
-        <input {...register("state", { required: true })}></input>
+        <input {...register("state", { required: true })} className="form-control"></input>
         {errors.state && <p className="text-danger">State is required.</p>}
         <label>Zip</label>
-        <input {...register("zip", { required: true, pattern: /^[0-9]{5}$/})}></input>
+        <input {...register("zip", { required: true, pattern: /^[0-9]{5}$/})} className="form-control"></input>
         {errors.zip && <p className="text-danger">A 5 digit ZIP code is required.</p>}
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
