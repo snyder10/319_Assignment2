@@ -51,23 +51,23 @@ function App() {
 
   const DisplayCart = () => {
     return (
-    <ul className="cartDisplay">
-      {
-        Object.keys(cart).map(item => (
-          <li key={item} className="rowData">
-            <img src={images[item]} alt={item} className="cartImage" />
-            <p>
-            <ul className="cartInfo ">
-              <li>{item}</li>
-              <li>{cart[item]} x ${products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"]}</li> 
-              <li>=</li> 
-              <li>${cart[item] * products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"]}</li>
-            </ul>
-            </p>
-          </li>
-        ))
-      }
-    </ul>);
+      <ul className="cartDisplay">
+        {
+          Object.keys(cart).map(item => (
+            <li key={item} className="rowData">
+              <img src={images[item]} alt={item} className="cartImage" />
+              <p>
+                <ul className="cartInfo ">
+                  <li>{item}</li>
+                  <li>{cart[item]} x ${products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"]}</li>
+                  <li>=</li>
+                  <li>${cart[item] * products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"]}</li>
+                </ul>
+              </p>
+            </li>
+          ))
+        }
+      </ul>);
   };
 
   const Items = () => (
@@ -75,7 +75,7 @@ function App() {
       {itemList.filter(item => item.toLowerCase().includes(searchString.toLowerCase())).map(item => (
         <li key={item}>
           <img src={images[item]} alt={item} className="item-image" /><hr />
-          {item}: <span class="price">${products["items"][item]["price"]}</span><hr></hr><button onClick={() => removeItem(item)}className="btn btn-secondary">-</button> <button onClick={() => addItem(item)}className="btn btn-secondary">+</button> {cart[item] ?? 0}<br />
+          {item}: <span class="price">${products["items"][item]["price"]}</span><hr></hr><button onClick={() => removeItem(item)} className="btn btn-secondary">-</button> <button onClick={() => addItem(item)} className="btn btn-secondary">+</button> {cart[item] ?? 0}<br />
           {products["items"][item]["description"]}
         </li>
       ))}
@@ -162,34 +162,35 @@ function App() {
   };
 
   const ConfirmationPage = () => (
-    <div >
-      <h1 className ="topHeading">Confirmation</h1><hr />
+    <div>
+      <h1 className="topHeading">Confirmation</h1><hr />
       <div className="center">
-      <h3 className="center">Thank you for your purchase, {dataF.name}</h3>
-      <hr/>
-      <div className="center">
-        <h1 className="center">Purchase Summary:</h1>
-        <DisplayCart />
-        <h1 className="center">Total: {sumCart()}</h1>
-      </div>
-      <hr/>
-      <div className="center">
-        <h1 className="center">Payment Summary:</h1>
-        <h3 className="center">{dataF.name}</h3>
-        <p className="center">{dataF.email}</p>
-        <p className="center">************{dataF.card.slice(12)}</p>
-        <p className="center">{dataF.address1} {dataF.address2}</p>
-        <p className="center">{dataF.city}, {dataF.state} {dataF.zip} </p>
-      </div>
-      <hr/>
-      <div>
-      <button onClick={resetPage} className="center btn btn-primary">Home</button>
+        <h3 className="center">Thank you for your purchase, {dataF.name}</h3>
+        <hr />
+        <div className="center">
+          <h1 className="center">Purchase Summary:</h1>
+          <DisplayCart />
+          <h1 className="center">Total: {sumCart()}</h1>
+        </div>
+        <hr />
+        <div className="center">
+          <h1 className="center">Payment Summary:</h1>
+          <h3 className="center">{dataF.name}</h3>
+          <p className="center">{dataF.email}</p>
+          <p className="center">************{dataF.card.slice(12)}</p>
+          <p className="center">{dataF.address1} {dataF.address2}</p>
+          <p className="center">{dataF.city}, {dataF.state} {dataF.zip} </p>
+        </div>
+        <hr />
+        <div>
+          <button onClick={resetPage} className="center btn btn-primary">Home</button>
+        </div>
       </div>
     </div>
   );
 
   return renderPage();
-}
+};
 
 const BrowsePage = ({ searchString, setSearchString, changePage, Items }) => (
   <div >
@@ -200,7 +201,7 @@ const BrowsePage = ({ searchString, setSearchString, changePage, Items }) => (
       placeholder="Search..."
       value={searchString}
       onChange={(e) => setSearchString(e.target.value)}
-      className="topHeading"/>
+      className="topHeading" />
     <Items />
   </div>
 );
