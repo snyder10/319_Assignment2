@@ -95,8 +95,6 @@ function App() {
     for (let item in cart) {      
       sum += cart[item] * data["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"];
     }
-    console.log(FormData.name);
-    console.log(register.fullName);
     return sum.toFixed(2);
   }
 
@@ -135,7 +133,6 @@ function App() {
   );
 
   const ConfirmationPage = () => (
-    // console.log();
     <div>
       Confirmation<hr />
       {/* Implement confirmation view here */}
@@ -151,10 +148,8 @@ function App() {
         <p>{data.email}</p>
         ...
         <p>{data.city},{data.state} {data.zip} </p>
-        {/* <button onClick={updateHooks}>Submit</button> */}
       </div>
       <button onClick={() => changePage("browse")}>Home</button>
-        {/* Make sure to reset cart and form */}
     </div>
   );
 
