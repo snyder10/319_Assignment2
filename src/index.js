@@ -72,6 +72,7 @@ function App() {
   );
 
   const renderPage = () => {
+    sumCart();
     switch (view) {
       case "browse":
         return <BrowsePage searchString={searchString} setSearchString={setSearchString} changePage={changePage} Items={Items} />;
@@ -88,6 +89,14 @@ function App() {
     console.log(data.zip);
     changePage("confirmation")
   };
+
+  const sumCart = () => {
+    let sum = 0;
+    for (let item in cart) {      
+      sum += cart[item] * data["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"];
+    }
+    return sum.toFixed(2);
+  }
 
   const CartPage = () => (
     <div>
@@ -131,7 +140,7 @@ function App() {
       <div>
         <p1>Purchase Summary:</p1>
         <DisplayCart />
-        <p1>Total: $5,000</p1>
+        <p1>Total: {sumCart()}</p1>
       </div>
       <div>
       <h1>Payment summary:</h1>
