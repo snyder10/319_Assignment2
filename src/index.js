@@ -151,23 +151,28 @@ function App() {
   };
 
   const ConfirmationPage = () => (
-    <div>
-      Confirmation<hr />
-      <p3>Thank you for your purchase, {}</p3>
-      <div>
-        <h1>Purchase Summary:</h1>
+    <div >
+      <h1 className ="topHeading">Confirmation</h1><hr />
+      <div className="center">
+      <h3 className="center">Thank you for your purchase, {dataF.name}</h3>
+      <hr/>
+      <div className="center">
+        <h1 className="center">Purchase Summary:</h1>
         <DisplayCart />
-        <h1>Total: {sumCart()}</h1>
+        <h1 className="center">Total: {sumCart()}</h1>
       </div>
-      <div>
-        <h1>Payment Summary:</h1>
-        <h3>{dataF.fullName}</h3>
-        <p>{dataF.email.split}</p>
-        <p>************{dataF.card.slice(12)}</p>
-        <p>{dataF.address1} {dataF.address2}</p>
-        <p>{dataF.city}, {dataF.state} {dataF.zip} </p>
+      <hr/>
+      <div className="center">
+        <h1 className="center">Payment Summary:</h1>
+        <h3 className="center">{dataF.name}</h3>
+        <p className="center">{dataF.email}</p>
+        <p className="center">************{dataF.card.slice(12)}</p>
+        <p className="center">{dataF.address1} {dataF.address2}</p>
+        <p className="center">{dataF.city}, {dataF.state} {dataF.zip} </p>
       </div>
-      <button onClick={resetPage}>Home</button>
+      <hr/>
+      <button onClick={resetPage} className="center btn btn-primary">Home</button>
+      </div>
     </div>
   );
 
@@ -175,7 +180,7 @@ function App() {
 }
 
 const BrowsePage = ({ searchString, setSearchString, changePage, Items }) => (
-  <div>
+  <div >
     <h1 className="topHeading">Browse</h1><hr />
     <button onClick={() => changePage("cart")} className="cartButton btn btn-primary">Cart</button>
     <input
