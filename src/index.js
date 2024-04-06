@@ -3,21 +3,21 @@ import { useForm } from "react-hook-form";
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import data from "./index.json"
+import products from "./index.json"
 
-console.log(data)
-const itemList = Object.keys(data["items"])
+const itemList = Object.keys(products["items"])
 
 function App() {
   const [view, setView] = useState("browse");
   const [cart, setCart] = useState({});
   const [searchString, setSearchString] = useState("");
   const [images, setImages] = useState({});
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [dataF, setDataF] = useState({});
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   useEffect(() => {
     const promises = itemList.map(item =>
-      import(`${data["items"][item]["image"]}`).then(module => ({ item, src: module.default })).catch(error => ({ item, src: null }))
+      import(`${products["items"][item]["image"]}`).then(module => ({ item, src: module.default })).catch(error => ({ item, src: null }))
     );
     Promise.all(promises)
       .then(results => {
@@ -27,6 +27,9 @@ function App() {
   }, []);
 
   const changePage = (pageName) => {
+    if(pageName==="browse") {
+      setSearchString("");
+    }
     setView(pageName);
   };
 
@@ -65,7 +68,7 @@ function App() {
         <li key={item}>
           <img src={images[item]} alt={item}  className="item-image"/><hr />
           {item}: <button onClick={() => removeItem(item)}>-</button><button onClick={() => addItem(item)}>+</button> {cart[item] ?? 0}<br/>
-          {data["items"][item]["description"]}
+          {products["items"][item]["description"]}
         </li>
       ))}
     </ul>
@@ -85,15 +88,25 @@ function App() {
     }
   };
 
-  const onSubmitCart = () => {
-    console.log(data.zip);
+  const onSubmitCart = data => {
+    setDataF(data);
+    reset({
+      "name": "",
+      "email": "",
+      "card": "",
+      "address1": "",
+      "address2": "",
+      "city": "",
+      "state": "",
+      "zip": ""
+    })
     changePage("confirmation")
   };
 
   const sumCart = () => {
     let sum = 0;
     for (let item in cart) {      
-      sum += cart[item] * data["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"];
+      sum += cart[item] * products["items"][item.charAt(0).toUpperCase() + item.slice(1)]["price"];
     }
     return sum.toFixed(2);
   }
@@ -132,24 +145,28 @@ function App() {
     </div>
   );
 
+  const resetPage = () => {
+    changePage("browse");
+    setCart({})
+  };
+
   const ConfirmationPage = () => (
     <div>
       Confirmation<hr />
-      {/* Implement confirmation view here */}
       <p3>Thank you for your purchase, {}</p3>
       <div>
-        <p1>Purchase Summary:</p1>
+        <h1>Purchase Summary:</h1>
         <DisplayCart />
-        <p1>Total: {sumCart()}</p1>
+        <h1>Total: {sumCart()}</h1>
       </div>
       <div>
-      <h1>Payment summary:</h1>
-        <h3>{data.fullName}</h3>
-        <p>{data.email}</p>
-        ...
-        <p>{data.city},{data.state} {data.zip} </p>
+      <h1>Payment Summary:</h1>
+        <h3>{dataF.name}</h3>
+        <p>{dataF.email}</p>
+         ...
+        <p>{dataF.city},{dataF.state} {dataF.zip} </p>
       </div>
-      <button onClick={() => changePage("browse")}>Home</button>
+      <button onClick={resetPage}>Home</button>
     </div>
   );
 
